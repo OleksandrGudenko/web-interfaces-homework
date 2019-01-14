@@ -1,0 +1,22 @@
+{
+  "name": "web_interfaces",
+  "version": "1.0.0",
+  "description": "RestAPI for displaying students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OleksandrGudenko/web-interfaces-homework.git"
+  },
+  "author": "OleksandrGudenko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OleksandrGudenko/web-interfaces-homework/issues"
+  },
+  "homepage": "https://github.com/OleksandrGudenko/web-interfaces-homework#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
