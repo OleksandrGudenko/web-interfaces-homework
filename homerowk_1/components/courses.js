@@ -53,7 +53,7 @@ router.put('/:courseId', (req, res) => {
     })
 })
 
-// remove
+// remove course
 router.delete('/:courseId', function(req, res){
     var cId = req.params.courseId - 1;
     delete courseData.courses[cId];

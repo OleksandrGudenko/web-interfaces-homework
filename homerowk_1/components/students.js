@@ -58,7 +58,7 @@ router.put('/:studId', (req, res) => {
     })
 })
 
-//remove
+//remove student
 router.delete('/:studId', function(req, res){
     var sId = req.params.studId - 1;
     delete studentData.students[sId];

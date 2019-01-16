@@ -17,13 +17,13 @@ Develop REST API
 
     b. Course data with routes for
 
-        i. Read
+        i. Read                             %
 
-        ii. Write
+        ii. Write                           %
 
-        iii. Update
+        iii. Update                         %
 
-        iv. Delete
+        iv. Delete                          %
 
     c. Course grade data with routes for
 
@@ -35,8 +35,9 @@ Develop REST API
 
         iv. Delete
 
-    2. Use Git version control system with your implementation and host your Git repository as a public repository at github
+    2. Use Git version control system with your implementation and host your Git repository as a public repository at github.            1/2 %  
 
-    3. Use Postman to prepare test operations for each implemented route in the REST API, you will use postman to demonstrate your implementation for the teacher.
+    3. Use Postman to prepare test operations for each implemented route in the REST API, you will use postman to demonstrate your implementation for the teacher.                                                                                                                     1/2 %
 
-        Student should have Name, Address, Class and unique ID.
+        Student should have Name, Address, Class and unique ID.             %
+        Course should contain Name, Description and unique ID.              %
