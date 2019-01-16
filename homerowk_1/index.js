@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 var studentsComponent = require('./components/students')
 var coursesComponent = require('./components/courses')
 var gradesComponent = require('./components/grades')
+var grades_experimentalComponent = require('./components/grades_experimental')
 
 app.use(bodyParser.json());
 
@@ -18,5 +19,6 @@ app.get('/', (req, res) => res.send('Welcome! Use tool like Postman to get all A
 app.use('/students', studentsComponent)
 app.use('/courses', coursesComponent)
 app.use('/grades', gradesComponent)
+app.use('/grades_experimental', grades_experimentalComponent)
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

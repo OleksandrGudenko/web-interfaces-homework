@@ -82,7 +82,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": " {\n \t\"name\": \"Bye Homie\",\n \t\"class\": \"Not today\",\n \t\"address\": \"Not DOXING\"\n }"
+					"raw": " {\n \t\"name\": \"Bob Putt\",\n \t\"class\": \"Din17sp\",\n \t\"address\": \"Isokatu 6\"\n }"
 				},
 				"url": {
 					"raw": "http://localhost:3000/students/3",
@@ -160,7 +160,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"PHP\",\n\t\"description\": \"Why is it still in use?\"\n}"
+					"raw": "{\n\t\"name\": \"PHP\",\n\t\"description\": \"Personal Home Page? NO it is 'Hypertext Preprocessor' now\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/courses",
@@ -268,7 +268,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"student\": \"Marcus\",\n\t\"course\": \"Javascript\",\n\t\"grade\": \"3\"\n}"
+					"raw": "{\n\t\"student\": \"Marcus Lee\",\n\t\"course\": \"Javascript\",\n\t\"grade\": \"3\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/grades",
@@ -298,7 +298,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"student\": \"Carl\",\n\t\"course\": \"REST_API\",\n\t\"grade\": \"4\"\n}"
+					"raw": "{\n\t\"student\": \"Carl Pro\",\n\t\"course\": \"REST_API\",\n\t\"grade\": \"4\"\n}"
 				},
 				"url": {
 					"raw": "http://localhost:3000/grades/3",
