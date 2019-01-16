@@ -40,7 +40,8 @@ Develop REST API
 
     2. Use Git version control system with your implementation and host your Git repository as a public repository at github.            %  
 
-    3. Use Postman to prepare test operations for each implemented route in the REST API, you will use postman to demonstrate your implementation for the teacher.                                                                                                                     %
+    3. Use Postman to prepare test operations for each implemented route in the REST API,
+       you will use postman to demonstrate your implementation for the teacher.                                                          %
 
-        Student should have Name, Address, Class and unique ID.             %
-        Course should contain Name, Description and unique ID.              %
+        i. Student should have Name, Address, Class and unique ID.             %
+        ii. Course should contain Name, Description and unique ID.              %
