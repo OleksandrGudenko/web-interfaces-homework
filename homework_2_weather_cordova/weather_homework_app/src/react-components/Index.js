@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import Search from './Search';
 import CityWeather from './CityWeather';
 import Author from './Madeby';
+// import Favorites from './Favorites';
 
 
 class Index extends Component {
@@ -17,7 +18,8 @@ class Index extends Component {
             <div>
                 <h1>Weather App</h1>
                 <br />
-                <Search />               
+                <Search /> 
+                {/* <Favorites />               */}
                 
                 <Route path={"/city"}  component={CityWeather}  /> 
 

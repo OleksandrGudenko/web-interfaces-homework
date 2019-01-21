@@ -9,6 +9,7 @@ class CityWeather extends Component {
             error: null
         }
         this.closeForecase = this.closeForecase.bind(this);
+        this.addToFav = this.addToFav.bind(this);
     }
 
 
@@ -44,6 +45,17 @@ class CityWeather extends Component {
         history.push('/');
     }
 
+    addToFav(key){
+        var storage = window.localStorage;
+        // var value = storage.getItem(key); // Pass a key name to get its value.
+        let id = storage.length +1;
+        storage.setItem(id, key) // Pass a key name and its value to add or update that key.
+    }
+
+    removeFromFav(req){
+        storage.removeItem(req) // Pass a key name to remove that key from storage.
+    }
+
     render(){
 
         if (this.state.error) {
@@ -59,7 +71,7 @@ class CityWeather extends Component {
                 <p>Weather Condition:   {this.state.weather}</p>
                 <p>More info:   {this.state.weatherDetails}</p>
                 <br />
-                <p>Current Temperature:  {this.state.currTemp - 273}</p>
+                <p>Current Temperature:  {this.state.currTemp - 273} </p>
                 <p>Max Temperature:  {this.state.maxTemp - 273} </p>
                 <p>Min Temperature:  {this.state.minTemp - 273}</p>
                 <br />
@@ -67,6 +79,10 @@ class CityWeather extends Component {
                 <br />
                 <p>Air Pressure:    {this.state.pressure} mbar</p>
                 <Button onClick={() => this.closeForecase()} className="btn btn-primary" style={{magrinBottom: "10px" }}>Close Forecast</Button> 
+                {/* {  this.state.id == localStorage.id ?
+                    <Button onClick={() => this.addToFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
+                    <Button onClick={() => this.removeFromFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
+              } */}
             </div>
 
         )
