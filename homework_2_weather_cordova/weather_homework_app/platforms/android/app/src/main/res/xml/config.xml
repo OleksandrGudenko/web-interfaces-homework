@@ -4,12 +4,12 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>HelloCordova</name>
+    <name>WeatherApp</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A simple weather app with Apache Cordova, React and OpenWeatherMap API.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="" href="https://github.com/OleksandrGudenko/web-interfaces-homework/tree/master/homework_2_weather_cordova/weather_homework_app">
+        OleksandrGudenko
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -19,6 +19,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <icon density="mdpi" height="57" src="res/icon/android/icon.png" width="57" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
 </widget>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
 import Search from './Search';
 import CityWeather from './CityWeather';
+import Author from './Madeby';
+
 
 class Index extends Component {
     constructor() {
@@ -19,7 +21,10 @@ class Index extends Component {
                 
                 <Route path={"/city"}  component={CityWeather}  /> 
 
+                <Author />
             </div>
+            
+
         );
     }
 }

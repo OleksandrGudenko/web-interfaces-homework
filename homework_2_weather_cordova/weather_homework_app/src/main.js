@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import history from './react-components/History';
 
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 import Index from './react-components/Index';
 
@@ -10,9 +11,9 @@ const indexTarget = document.getElementById('react-target');
 
 
 ReactDOM.render(
-    <BrowserRouter>
+    <Router history={history}>
     <Index />
-    </BrowserRouter>,
+    </Router>,
     indexTarget
 );
 
