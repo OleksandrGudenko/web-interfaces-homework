@@ -6,7 +6,7 @@ class Search extends React.Component {
           super(props);
           this.state = {
             searchString: "",
-            cityNames: []
+            cities: []
           };
           this.handleChange = this.handleChange.bind(this);
         }
@@ -15,8 +15,8 @@ class Search extends React.Component {
           
         componentDidMount(){
         const cities = require('../cities/city.list.json');
-        const cityNames = cities.map(city => ( city.name ));
-        this.setState( {cityNames} );
+        // cityNames= cities.map(city => ( city.name ));
+        this.setState( {cities} );
         }
     
       
@@ -27,14 +27,17 @@ class Search extends React.Component {
         }
       
         render() {
-          let _cities = this.state.cityNames;
+          let _cities = this.state.cities;
           let search = this.state.searchString.trim().toLowerCase();
       
           if (search.length > 0) {
             _cities = _cities.filter(function(city) {
-              return city.toLowerCase().match(search);
+              return city.name.toLowerCase().match(search);
+                      
+
             });
 
+             
           }
       
           return (
@@ -57,11 +60,12 @@ class Search extends React.Component {
                                 <Link to={{
                                     pathname: "/city",
                                     state: {
-                                        cityName: city
+                                        cityName: city.name,
+                                        cityID: city.id
                                     }
                                 }
                                 } >
-                                {city}</Link>
+                                {city.name}</Link>
                             </li>
                             )
                         })

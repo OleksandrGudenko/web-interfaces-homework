@@ -11,13 +11,13 @@ class CityWeather extends Component {
 
 
     componentDidMount(){
-        const {cityName} = this.props.location.state;
-        this.setState({cityName})
-        let reqCity = JSON.stringify({cityName}.cityName);
-        let cityString = reqCity.replace(/['"]+/g, '');
+        const {cityID} = this.props.location.state;
+        this.setState({cityID})
+
+        // API key &APPID=883a671d450723aaa990ba07e02d1701
 
         
-        fetch('http://api.openweathermap.org/data/2.5/weather?q='+ cityString +'&APPID=883a671d450723aaa990ba07e02d1701').then(
+        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'API_here').then(
             res => { return res.json() }).
             then( data => {
                 this.setState({
