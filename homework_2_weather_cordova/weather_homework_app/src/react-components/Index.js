@@ -15,7 +15,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div>
+            <div className="index-div">
                 <h1>Weather App</h1>
                 <br />
                 <Search /> 

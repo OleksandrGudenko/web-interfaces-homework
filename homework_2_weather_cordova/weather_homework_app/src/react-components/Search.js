@@ -41,8 +41,6 @@ class Search extends React.Component {
           if (search.length > 0) {
             _cities = _cities.filter(function(city) {
               return city.name.toLowerCase().match(search);
-                      
-
             });
 
              

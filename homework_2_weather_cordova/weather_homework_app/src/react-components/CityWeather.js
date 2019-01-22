@@ -71,9 +71,9 @@ class CityWeather extends Component {
                 <p>Weather Condition:   {this.state.weather}</p>
                 <p>More info:   {this.state.weatherDetails}</p>
                 <br />
-                <p>Current Temperature:  {this.state.currTemp - 273} </p>
-                <p>Max Temperature:  {this.state.maxTemp - 273} </p>
-                <p>Min Temperature:  {this.state.minTemp - 273}</p>
+                <p>Current Temperature:  {this.state.currTemp - 273}C </p>
+                <p>Max Temperature:  {this.state.maxTemp - 273}C </p>
+                <p>Min Temperature:  {this.state.minTemp - 273}C </p>
                 <br />
                 <p>Humidity:    {this.state.humidity} %</p>
                 <br />

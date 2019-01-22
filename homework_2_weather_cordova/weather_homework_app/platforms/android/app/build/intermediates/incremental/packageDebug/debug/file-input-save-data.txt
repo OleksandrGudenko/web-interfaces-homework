@@ -1,10 +1,10 @@
 #Internal package file, do not edit.
-#Sat Jan 19 15:57:09 EET 2019
+#Tue Jan 22 08:46:57 EET 2019
 4.path=www/cordova-js-src/android/promptbasednativeapi.js
 8.set=ASSET
 6.path=www/js/index.js
 0.baseType=DIRECTORY
-10.path=www/cordova_plugins.js
+10.path=www/cordova-js-src/android/nativeapiprovider.js
 5.baseType=DIRECTORY
 1.base=C\:\\OAMK\\lasse\\homework\\web-interfaces-homework\\homework_2_weather_cordova\\weather_homework_app\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 8.path=www/index.html
@@ -30,8 +30,8 @@
 5.path=www/cordova-js-src/exec.js
 0.base=C\:\\OAMK\\lasse\\homework\\web-interfaces-homework\\homework_2_weather_cordova\\weather_homework_app\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 7.path=www/js/bundle.js
-11.path=www/cordova-js-src/android/nativeapiprovider.js
-9.path=www/img/logo.png
+11.path=www/img/background.jpg
+9.path=www/cordova_plugins.js
 6.set=ASSET
 2.base=C\:\\OAMK\\lasse\\homework\\web-interfaces-homework\\homework_2_weather_cordova\\weather_homework_app\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 11.baseType=DIRECTORY
