@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jan 22 08:46:57 EET 2019
+#Tue Jan 22 09:22:36 EET 2019
 4.path=www/cordova-js-src/android/promptbasednativeapi.js
 8.set=ASSET
 6.path=www/js/index.js
