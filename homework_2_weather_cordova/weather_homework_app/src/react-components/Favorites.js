@@ -11,8 +11,6 @@ class Favorites extends Component {
             cityNames: [],
             onBootLocalStorageLength: null
         }
-
-        this.maybe = this.maybe.bind(this)
     }
 
     componentDidMount(){
