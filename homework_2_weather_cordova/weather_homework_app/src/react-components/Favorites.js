@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import history from './History';
-
 
 
 class Favorites extends Component {
@@ -22,12 +20,11 @@ class Favorites extends Component {
         
             for ( let i=1; i <= favCount; i++){
                 if (localStorage.getItem(i) != null){
-                    var cities = JSON.parse(localStorage.getItem(i))
-                    cityNames[i] = {name : cities.name, id : cities.id};    
-                } else {
-                    true;
-                }
-                
+                    if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
+                        var cities = JSON.parse(localStorage.getItem(i));
+                        cityNames[i] = {name : cities.name, id : cities.id};    
+                    }
+                }                 
             }
         
         this.setState({cityNames:cityNames}); 
@@ -39,7 +36,6 @@ class Favorites extends Component {
     render() {
         
         let FavCities = this.state.cityNames;
-        // console.log(FavCities);
 
         const RemCities = 
         Object.keys(FavCities).map( (key) => {

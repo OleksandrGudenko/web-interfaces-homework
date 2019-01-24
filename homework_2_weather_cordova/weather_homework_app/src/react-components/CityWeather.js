@@ -9,11 +9,13 @@ class CityWeather extends Component {
             error: null,
             name:[],
             id:[],
-            favoritesCount:[]
+            favoritesCount:[],
+            liked: false
         }
         this.closeForecase = this.closeForecase.bind(this);
         this.addToFav = this.addToFav.bind(this);
         this.removeFromFav = this.removeFromFav.bind(this);
+        this.checkIfLiked = this.checkIfLiked.bind(this);
     }
 
 
@@ -41,7 +43,8 @@ class CityWeather extends Component {
                 this.setState({ error })
             }
 
-        }
+        this.checkIfLiked();
+    }
 
         
     closeForecase(){
@@ -65,7 +68,34 @@ class CityWeather extends Component {
     }
 
     removeFromFav(req){
-        storage.removeItem(req) // Pass a key name to remove that key from storage.
+
+        var favCount = localStorage.getItem('favorites-count');
+
+        for ( let i=1; i <= favCount; i++){
+            if (localStorage.getItem(i) != null){  
+                if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
+                    if(req == (JSON.parse(localStorage.getItem(i))).name){
+                    localStorage.removeItem(i) 
+                    break;
+                    } 
+                } 
+            }
+        }
+    }
+
+    checkIfLiked(){
+        var favCount = localStorage.getItem('favorites-count');
+        for ( let i=1; i <= favCount; i++){
+            if (localStorage.getItem(i) != null){   
+                if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
+                    if(this.state.name === JSON.parse(localStorage.getItem(i)).name){
+                        this.setState({liked: true}) ;
+                        break;
+                    } 
+                }  
+            }
+                
+        }
     }
 
     render(){
@@ -91,9 +121,10 @@ class CityWeather extends Component {
                 <br />
                 <p>Air Pressure:    {this.state.pressure} mbar</p>
                 <Button onClick={() => this.closeForecase()} className="btn btn-primary" style={{magrinBottom: "10px" }}>Close Forecast</Button> 
-                {  !this.state.error ?
+                {  this.state.liked === true 
+                    ?
                     <Button onClick={() => this.addToFav(this.state.id, this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
-                    <Button onClick={() => this.removeFromFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
+                    <Button onClick={() => this.removeFromFav(this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
               }
             </div>
 

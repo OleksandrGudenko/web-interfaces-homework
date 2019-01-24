@@ -67,7 +67,7 @@ class Search extends React.Component {
                   placeholder="HERE"
                   autoFocus
                 />
-                <ul>
+                <ul className="searchBar-res">
                 { 
                         _cities.slice(0, 10).map((city, index) => {
                           if (this.state.searchString.length > 0) {
