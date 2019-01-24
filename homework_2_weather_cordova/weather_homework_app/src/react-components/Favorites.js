@@ -28,8 +28,9 @@ class Favorites extends Component {
             }
         
         this.setState({cityNames:cityNames}); 
-    }
 
+    }
+    
     
 
 

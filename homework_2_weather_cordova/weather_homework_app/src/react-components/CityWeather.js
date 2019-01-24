@@ -65,6 +65,8 @@ class CityWeather extends Component {
         }
         storage.setItem(newFavCount, JSON.stringify({name, id})); 
         storage.setItem('favorites-count', newFavCount);
+        this.setState({liked: true})
+        this.checkIfLiked()
     }
 
     removeFromFav(req){
@@ -76,11 +78,14 @@ class CityWeather extends Component {
                 if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
                     if(req == (JSON.parse(localStorage.getItem(i))).name){
                     localStorage.removeItem(i) 
+                    this.setState({liked: false})
                     break;
                     } 
                 } 
             }
         }
+        this.setState({state: this.state})
+        this.checkIfLiked()
     }
 
     checkIfLiked(){
