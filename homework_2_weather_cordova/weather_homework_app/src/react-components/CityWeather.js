@@ -66,6 +66,7 @@ class CityWeather extends Component {
         storage.setItem(newFavCount, JSON.stringify({name, id})); 
         storage.setItem('favorites-count', newFavCount);
         this.setState({liked: true})
+        
         this.checkIfLiked()
     }
 

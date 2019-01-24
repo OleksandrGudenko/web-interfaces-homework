@@ -12,7 +12,7 @@ class Index extends Component {
 
     }
 
-componentDidMount(){
+componentDidMount(){ // this is done in order to initilize counter on localstorage to eliminate rewriting existing data
 
     if(localStorage.getItem('favorites-count')){
         return;
@@ -27,16 +27,16 @@ componentDidMount(){
         return (
             <div className="index-div">
                 <h1>Weather App</h1>
-                <br />
-                <Search /> 
-                <Favorites />              
                 
-                <Route path={"/city"}  component={CityWeather}  /> 
+                <br />
+
+                <Search /> 
+                <Favorites />    
+
+                <Route path={"/city"}  component={CityWeather}  />     
 
                 <Author />
             </div>
-            
-
         );
     }
 }
