@@ -3,7 +3,7 @@
   "display": "standalone",
   "name": "WeatherApp",
   "short_name": "WeatherApp",
-  "version": "io.cordova.hellocordova",
+  "version": "io.cordova.weatherapp",
   "description": "A simple weather app with Apache Cordova, React and OpenWeatherMap API.",
   "author": "OleksandrGudenko",
   "icons": [],

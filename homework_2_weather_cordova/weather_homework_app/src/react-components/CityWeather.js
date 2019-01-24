@@ -6,19 +6,21 @@ class CityWeather extends Component {
     constructor(props){
         super(props);
         this.state = {
-            error: null
+            error: null,
+            name:[],
+            id:[],
+            favoritesCount:[]
         }
         this.closeForecase = this.closeForecase.bind(this);
         this.addToFav = this.addToFav.bind(this);
+        this.removeFromFav = this.removeFromFav.bind(this);
     }
 
 
     componentDidMount(){
         const {cityID} = this.props.location.state;
-        this.setState({cityID})
-
+        
         // API key &APPID=883a671d450723aaa990ba07e02d1701
-
         
         fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=883a671d450723aaa990ba07e02d1701').then(
             res => { return res.json() }).
@@ -34,22 +36,32 @@ class CityWeather extends Component {
                     humidity: parseFloat(data.main.humidity),
                     pressure: parseFloat(data.main.pressure)
                 })
-                }),
-                (error) => {
-                    this.setState({ error })
-                }
+            }),
+            (error) => {
+                this.setState({ error })
+            }
 
         }
+
         
     closeForecase(){
         history.push('/');
     }
 
-    addToFav(key){
+    addToFav(id, name){
         var storage = window.localStorage;
-        // var value = storage.getItem(key); // Pass a key name to get its value.
-        let id = storage.length +1;
-        storage.setItem(id, key) // Pass a key name and its value to add or update that key.
+        var favCount = storage.getItem('favorites-count');
+        var newFavCount = null;
+        for ( let i=1; i <= favCount; i++){
+            if(favCount != localStorage.getItem(i)){
+                newFavCount = Number(favCount) + 1 ;
+                break;
+            } else{
+                newFavCount = i ;
+            }
+        }
+        storage.setItem(newFavCount, JSON.stringify({name, id})); 
+        storage.setItem('favorites-count', newFavCount);
     }
 
     removeFromFav(req){
@@ -79,10 +91,10 @@ class CityWeather extends Component {
                 <br />
                 <p>Air Pressure:    {this.state.pressure} mbar</p>
                 <Button onClick={() => this.closeForecase()} className="btn btn-primary" style={{magrinBottom: "10px" }}>Close Forecast</Button> 
-                {/* {  this.state.id == localStorage.id ?
-                    <Button onClick={() => this.addToFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
+                {  !this.state.error ?
+                    <Button onClick={() => this.addToFav(this.state.id, this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
                     <Button onClick={() => this.removeFromFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
-              } */}
+              }
             </div>
 
         )

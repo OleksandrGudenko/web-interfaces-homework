@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import Search from './Search';
 import CityWeather from './CityWeather';
 import Author from './Madeby';
-// import Favorites from './Favorites';
+import Favorites from './Favorites';
 
 
 class Index extends Component {
@@ -12,6 +12,16 @@ class Index extends Component {
 
     }
 
+componentDidMount(){
+
+    if(localStorage.getItem('favorites-count')){
+        return;
+    } else {
+        localStorage.setItem('favorites-count', 1)
+    }
+
+}
+
 
     render() {
         return (
@@ -19,7 +29,7 @@ class Index extends Component {
                 <h1>Weather App</h1>
                 <br />
                 <Search /> 
-                {/* <Favorites />               */}
+                <Favorites />              
                 
                 <Route path={"/city"}  component={CityWeather}  /> 
 
