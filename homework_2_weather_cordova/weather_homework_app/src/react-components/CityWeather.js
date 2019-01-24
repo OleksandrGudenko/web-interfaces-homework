@@ -37,13 +37,13 @@ class CityWeather extends Component {
                     minTemp:  Math.round(parseFloat(data.main.temp_min)),
                     humidity: parseFloat(data.main.humidity),
                     pressure: parseFloat(data.main.pressure)
-                })
+                }),
+                this.checkIfLiked();
             }),
             (error) => {
                 this.setState({ error })
             }
 
-        this.checkIfLiked();
     }
 
         
@@ -88,6 +88,8 @@ class CityWeather extends Component {
         for ( let i=1; i <= favCount; i++){
             if (localStorage.getItem(i) != null){   
                 if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
+                    console.log(JSON.parse(localStorage.getItem(i)).name)
+                    console.log('this is state: '+ this.state.name)
                     if(this.state.name === JSON.parse(localStorage.getItem(i)).name){
                         this.setState({liked: true}) ;
                         break;
@@ -96,6 +98,7 @@ class CityWeather extends Component {
             }
                 
         }
+        
     }
 
     render(){
@@ -121,7 +124,7 @@ class CityWeather extends Component {
                 <br />
                 <p>Air Pressure:    {this.state.pressure} mbar</p>
                 <Button onClick={() => this.closeForecase()} className="btn btn-primary" style={{magrinBottom: "10px" }}>Close Forecast</Button> 
-                {  this.state.liked === true 
+                {  this.state.liked === false 
                     ?
                     <Button onClick={() => this.addToFav(this.state.id, this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
                     <Button onClick={() => this.removeFromFav(this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
