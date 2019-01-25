@@ -4,7 +4,10 @@ class Author extends Component
 {
     render(){
         return(
-            <div className="credentials">Author: OleksandrGudenko, github</div>
+            <div className="credentials">
+                <div>Author: OleksandrGudenko, github</div>
+                <div>Background photo: Jeremy Bishop, Unsplash</div>
+            </div>
         )
     }
 

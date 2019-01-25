@@ -23,8 +23,9 @@ class FavCityWeather extends Component {
         const {cityID} = this.props.location.state;
         
         // API key &APPID=883a671d450723aaa990ba07e02d1701
+        // 4c8e12d08fc1ab8b3e6906fc5db5131c
         
-        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=883a671d450723aaa990ba07e02d1701').then(
+        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
             res => { return res.json() }).
             then( data => {
                 this.setState({
@@ -138,12 +139,16 @@ class FavCityWeather extends Component {
                 <p>Humidity:    {this.state.humidity} %</p>
                 <br />
                 <p>Air Pressure:    {this.state.pressure} mbar</p>
-                <Button onClick={() => this.closeForecase()} className="btn btn-primary" style={{magrinBottom: "10px" }}>Close Forecast</Button> 
+                <br />
+                <br />
+                <br />
+
                 {  this.state.liked === false 
                     ?
-                    <Button onClick={() => this.addToFav(this.state.id, this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
-                    <Button onClick={() => this.removeFromFav(this.state.name)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
-              }
+                    <Button onClick={() => this.addToFav(this.state.id, this.state.name)} className="link-btn btn" >Remember</Button> :
+                    <Button onClick={() => this.removeFromFav(this.state.name)} className="link-btn btn" >Forget</Button>
+                }
+                <Button onClick={() => this.closeForecase()} className="link-btn btn btn-primary" >Close Forecast</Button> 
             </div>
 
         )
