@@ -58,6 +58,7 @@ class CityWeather extends Component {
         for ( let i=1; i <= favCount; i++){
             if(favCount != localStorage.getItem(i)){
                 newFavCount = Number(favCount) + 1 ;
+                this.setState({liked: true})
                 break;
             } else{
                 newFavCount = i ;
@@ -65,7 +66,6 @@ class CityWeather extends Component {
         }
         storage.setItem(newFavCount, JSON.stringify({name, id})); 
         storage.setItem('favorites-count', newFavCount);
-        this.setState({liked: true})
         
         this.checkIfLiked()
     }
@@ -104,6 +104,8 @@ class CityWeather extends Component {
             }
                 
         }
+
+        return
         
     }
 

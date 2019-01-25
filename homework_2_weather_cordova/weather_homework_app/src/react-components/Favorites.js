@@ -49,14 +49,13 @@ class Favorites extends Component {
     render() {
         
         let FavCities = this.state.cityNames;
-
         const RemCities = 
         Object.keys(FavCities).map( (key) => {
             if(FavCities[key].name){
                 return(   
             <li key={FavCities[key].id}>
             <Link to={{
-                pathname: "/city",
+                pathname: "/fav-city",
                 state: {
                     cityName: FavCities[key].name,
                     cityID: FavCities[key].id

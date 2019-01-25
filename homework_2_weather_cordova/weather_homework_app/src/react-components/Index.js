@@ -4,6 +4,7 @@ import Search from './Search';
 import CityWeather from './CityWeather';
 import Author from './Madeby';
 import Favorites from './Favorites';
+import FavCityWeather from './FavCityWeather';
 
 
 class Index extends Component {
@@ -33,7 +34,8 @@ componentDidMount(){ // this is done in order to initilize counter on localstora
                 <Search /> 
                 <Favorites />    
 
-                <Route path={"/city"}  component={CityWeather}  />     
+                <Route path={"/city"}  component={CityWeather}  />  
+                <Route path={"/fav-city"} component={FavCityWeather} />   
 
                 <Author />
             </div>
