@@ -6,21 +6,26 @@ class CityWeather extends Component {
     constructor(props){
         super(props);
         this.state = {
-            error: null
+            error: null,
+            name:[],
+            id:[],
+            favoritesCount:[],
+            liked: false
         }
         this.closeForecase = this.closeForecase.bind(this);
         this.addToFav = this.addToFav.bind(this);
+        this.removeFromFav = this.removeFromFav.bind(this);
+        this.checkIfLiked = this.checkIfLiked.bind(this);
     }
 
 
     componentDidMount(){
         const {cityID} = this.props.location.state;
-        this.setState({cityID})
-
-        // API key &APPID=883a671d450723aaa990ba07e02d1701
-
         
-        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=883a671d450723aaa990ba07e02d1701').then(
+        // API key &APPID=883a671d450723aaa990ba07e02d1701
+        // 4c8e12d08fc1ab8b3e6906fc5db5131c
+        
+        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
             res => { return res.json() }).
             then( data => {
                 this.setState({
@@ -33,27 +38,76 @@ class CityWeather extends Component {
                     minTemp:  Math.round(parseFloat(data.main.temp_min)),
                     humidity: parseFloat(data.main.humidity),
                     pressure: parseFloat(data.main.pressure)
-                })
                 }),
-                (error) => {
-                    this.setState({ error })
-                }
+                this.checkIfLiked();
+            }),
+            (error) => {
+                this.setState({ error })
+            }
 
-        }
+    }
+
         
     closeForecase(){
         history.push('/');
     }
 
-    addToFav(key){
+    addToFav(id, name){
         var storage = window.localStorage;
-        // var value = storage.getItem(key); // Pass a key name to get its value.
-        let id = storage.length +1;
-        storage.setItem(id, key) // Pass a key name and its value to add or update that key.
+        var favCount = storage.getItem('favorites-count');
+        var newFavCount = null;
+        for ( let i=1; i <= favCount; i++){
+            if(favCount != localStorage.getItem(i)){
+                newFavCount = Number(favCount) + 1 ;
+                this.setState({liked: true})
+                break;
+            } else{
+                newFavCount = i ;
+            }
+        }
+        storage.setItem(newFavCount, JSON.stringify({name, id})); 
+        storage.setItem('favorites-count', newFavCount);
+        
+        this.checkIfLiked()
     }
 
     removeFromFav(req){
-        storage.removeItem(req) // Pass a key name to remove that key from storage.
+
+        var favCount = localStorage.getItem('favorites-count');
+
+        for ( let i=1; i <= favCount; i++){
+            if (localStorage.getItem(i) != null){  
+                if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
+                    if(req == (JSON.parse(localStorage.getItem(i))).name){
+                    localStorage.removeItem(i) 
+                    this.setState({liked: false})
+                    break;
+                    } 
+                } 
+            }
+        }
+        this.setState({state: this.state})
+        this.checkIfLiked()
+    }
+
+    checkIfLiked(){
+        var favCount = localStorage.getItem('favorites-count');
+        for ( let i=1; i <= favCount; i++){
+            if (localStorage.getItem(i) != null){   
+                if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
+                    console.log(JSON.parse(localStorage.getItem(i)).name)
+                    console.log('this is state: '+ this.state.name)
+                    if(this.state.name === JSON.parse(localStorage.getItem(i)).name){
+                        this.setState({liked: true}) ;
+                        break;
+                    } 
+                }  
+            }
+                
+        }
+
+        return
+        
     }
 
     render(){
@@ -78,11 +132,16 @@ class CityWeather extends Component {
                 <p>Humidity:    {this.state.humidity} %</p>
                 <br />
                 <p>Air Pressure:    {this.state.pressure} mbar</p>
-                <Button onClick={() => this.closeForecase()} className="btn btn-primary" style={{magrinBottom: "10px" }}>Close Forecast</Button> 
-                {/* {  this.state.id == localStorage.id ?
-                    <Button onClick={() => this.addToFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Remember</Button> :
-                    <Button onClick={() => this.removeFromFav(this.state.id)} className="btn" style={{magrinBottom: "10px" }}>Forget</Button>
-              } */}
+                <br />
+                <br />
+                <br />
+
+                {  this.state.liked === false 
+                    ?
+                    <Button onClick={() => this.addToFav(this.state.id, this.state.name)} className="link-btn btn" >Remember</Button> :
+                    <Button onClick={() => this.removeFromFav(this.state.name)} className="link-btn btn" >Forget</Button>
+                }
+                <Button onClick={() => this.closeForecase()} className="link-btn btn btn-primary" >Close Forecast</Button> 
             </div>
 
         )

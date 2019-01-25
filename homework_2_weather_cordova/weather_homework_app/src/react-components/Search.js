@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ButtonGroup, Button } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import history from './History';
+
 
 class Search extends React.Component {
         constructor(props) {
@@ -25,14 +27,20 @@ class Search extends React.Component {
           this.setState({
             searchString: this.refs.search.value
           });
+            history.push('/');
+
         }
 
         clean(){
+
           this.refs.search.value = null;
-          this.setState({
-            searchString: this.refs.search.value
-          })
+
+            this.setState({
+              searchString: this.refs.search.value
+            })
+
         }
+
       
         render() {
           let _cities = this.state.cities;
@@ -59,13 +67,13 @@ class Search extends React.Component {
                   placeholder="HERE"
                   autoFocus
                 />
-                <ul>
+                <ul className="searchBar-res">
                 { 
                         _cities.slice(0, 10).map((city, index) => {
                           if (this.state.searchString.length > 0) {
                             return (
                               
-                            <li>
+                            <li key={city.id}>
                                 <Link to={{
                                     pathname: "/city",
                                     state: {
@@ -73,7 +81,7 @@ class Search extends React.Component {
                                         cityID: city.id
                                     }
                                 }
-                                } className="search-btn">
+                                } className="search-btn" >
                                 <Button key={index} className="link-btn" onClick={() => this.clean()} >
                                 {city.name}
                                 </Button>
