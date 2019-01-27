@@ -24,15 +24,19 @@ class Favorites extends Component {
 
             for ( let i=1; i <= favCount; i++){
                 if (localStorage.getItem(i) != null){
+                    if(JSON.parse(localStorage.getItem(i)).name == null || JSON.parse(localStorage.getItem(i)).id == null ){
+                        localStorage.removeItem(i)
+                    } else
                     if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
                         var cities = JSON.parse(localStorage.getItem(i));
                         cityNames[i] = {name : cities.name, id : cities.id};    
                     }
+
                 }                 
             }
         
         this.setState({ cityNames:cityNames, onBootLocalStorageLength: BootLocalStorageLength },
-                        () => {console.log(this.state.onBootLocalStorageLength)}); 
+                        () => {console.log('ok')}); 
 
     }
     

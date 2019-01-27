@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import history from './History';
 import { Button } from 'react-bootstrap';
 
-class FavCityWeather extends Component {
+class CityWeather extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -22,29 +22,30 @@ class FavCityWeather extends Component {
     componentDidMount(){
         const {cityID} = this.props.location.state;
         
-        // API key &APPID=883a671d450723aaa990ba07e02d1701
-        // 4c8e12d08fc1ab8b3e6906fc5db5131c
-        
-        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
-            res => { return res.json() }).
-            then( data => {
-                this.setState({
-                    name: data.name,
-                    id : data.id,
-                    weather: data.weather[0].main,
-                    weatherDetails: data.weather[0].description,
-                    currTemp: Math.round(parseFloat(data.main.temp)),
-                    maxTemp:  Math.round(parseFloat(data.main.temp_max)),
-                    minTemp:  Math.round(parseFloat(data.main.temp_min)),
-                    humidity: parseFloat(data.main.humidity),
-                    pressure: parseFloat(data.main.pressure)
-                })
-                
-            }, () => {this.checkIfLiked()}),
-            (error) => {
-                this.setState({ error })
+        // API key 4c8e12d08fc1ab8b3e6906fc5db5131c
+         
+        if(cityID != this.state.id){
+            fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
+                res => { return res.json() }).
+                then( data => {
+                    this.setState({
+                        name: data.name,
+                        id : data.id,
+                        weather: data.weather[0].main,
+                        weatherDetails: data.weather[0].description,
+                        currTemp: Math.round(parseFloat(data.main.temp)),
+                        maxTemp:  Math.round(parseFloat(data.main.temp_max)),
+                        minTemp:  Math.round(parseFloat(data.main.temp_min)),
+                        humidity: parseFloat(data.main.humidity),
+                        pressure: parseFloat(data.main.pressure)
+                    }), 
+                    this.checkIfLiked();
+                }),
+                (error) => {
+                    this.setState({ error })
+                }
             }
-
+                
     }
 
     componentDidUpdate(prevProps) {
@@ -54,7 +55,6 @@ class FavCityWeather extends Component {
             return true;
         }
       }
-
         
     closeForecase(){
         history.push('/');
@@ -99,22 +99,24 @@ class FavCityWeather extends Component {
     }
 
     checkIfLiked(){
+        console.log('cheking if liked was fired')
         var favCount = localStorage.getItem('favorites-count');
         for ( let i=1; i <= favCount; i++){
             if (localStorage.getItem(i) != null){   
                 if(localStorage.getItem(i) != localStorage.getItem('favorites-count')) {
-                    console.log(this.state.name === JSON.parse(localStorage.getItem(i)).name)
                     console.log(JSON.parse(localStorage.getItem(i)).name)
                     console.log('this is state: '+ this.state.name)
                     if(this.state.name === JSON.parse(localStorage.getItem(i)).name){
                         this.setState({liked: true}) ;
                         break;
-                    }
+                    } 
                 }  
             }
                 
         }
+
         return
+        
     }
 
     render(){
@@ -156,4 +158,4 @@ class FavCityWeather extends Component {
     }
 }
 
-export default FavCityWeather;
+export default CityWeather;

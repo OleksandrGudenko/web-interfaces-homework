@@ -21,30 +21,31 @@ class CityWeather extends Component {
 
     componentDidMount(){
         const {cityID} = this.props.location.state;
+ 
+        // API key &APPID=4c8e12d08fc1ab8b3e6906fc5db5131c
         
-        // API key &APPID=883a671d450723aaa990ba07e02d1701
-        // 4c8e12d08fc1ab8b3e6906fc5db5131c
-        
-        fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
-            res => { return res.json() }).
-            then( data => {
-                this.setState({
-                    name: data.name,
-                    id : data.id,
-                    weather: data.weather[0].main,
-                    weatherDetails: data.weather[0].description,
-                    currTemp: Math.round(parseFloat(data.main.temp)),
-                    maxTemp:  Math.round(parseFloat(data.main.temp_max)),
-                    minTemp:  Math.round(parseFloat(data.main.temp_min)),
-                    humidity: parseFloat(data.main.humidity),
-                    pressure: parseFloat(data.main.pressure)
+        if(cityID != this.state.id){
+            fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
+                res => { return res.json() }).
+                then( data => {
+                    this.setState({
+                        name: data.name,
+                        id : data.id,
+                        weather: data.weather[0].main,
+                        weatherDetails: data.weather[0].description,
+                        currTemp: Math.round(parseFloat(data.main.temp)),
+                        maxTemp:  Math.round(parseFloat(data.main.temp_max)),
+                        minTemp:  Math.round(parseFloat(data.main.temp_min)),
+                        humidity: parseFloat(data.main.humidity),
+                        pressure: parseFloat(data.main.pressure)
+                    }),
+                    this.checkIfLiked();
                 }),
-                this.checkIfLiked();
-            }),
-            (error) => {
-                this.setState({ error })
+                (error) => {
+                    this.setState({ error })
+                }
+                
             }
-
     }
 
         
@@ -91,6 +92,7 @@ class CityWeather extends Component {
     }
 
     checkIfLiked(){
+        console.log('cheking if liked was fired')
         var favCount = localStorage.getItem('favorites-count');
         for ( let i=1; i <= favCount; i++){
             if (localStorage.getItem(i) != null){   
