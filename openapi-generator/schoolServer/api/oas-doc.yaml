@@ -1,0 +1,472 @@
+openapi: 3.0.0
+info:
+  title: School API
+  version: '1.0'
+  contact:
+    name: Olek
+  description: API to manage shcool
+paths:
+  '/students/{id}':
+    put:
+      responses:
+        '202':
+          description: User data successfully modified.
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: User ID is not specified.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  class:
+                    type: string
+                  adress:
+                    type: string
+        x-examples:
+          application/json:
+            - firstName: Kevin
+              lastName: Constner
+              class: din18sp
+              adress: Kotka 2
+      summary: modify existing user by ID
+      operationId: updateStudent
+      description: update student with provided ID
+      tags:
+        - put
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      responses:
+        '200':
+          description: Student has been successfully removed.
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: In order to remove student you need to specify ID.
+      summary: Remove student
+      operationId: deleteStudent
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      description: remove student with provided id
+      tags:
+        - delete
+  /students:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    firstName:
+                      type: string
+                    lastName:
+                      type: string
+                    class:
+                      type: string
+                    address:
+                      type: string
+            application/json:
+              examples:
+                response:
+                  value:
+                    - id: 1
+                      firstName: Bob
+                      lastName: Marley
+                      class: din17sp
+                      address: Kotkantie 1
+                    - id: 2
+                      firstName: John
+                      lastName: Wick
+                      class: din17sp
+                      address: Kotkantie 2
+                    - id: 3
+                      firstName: Peter
+                      lastName: Parker
+                      class: din17sp
+                      address: Kotkantie 3
+      summary: get all students
+      operationId: listStudents
+      description: List all students from db
+      tags:
+        - get
+    post:
+      responses:
+        '201':
+          description: New student was successfully added.
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '406':
+          description: |-
+            New student should include:
+            (id is automatically added)
+            1. firstName,
+            2. lastName,
+            3. class,
+            4. address
+
+            This is request accepts only JSON
+      summary: create new student
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  firstName:
+                    type: string
+                  lastName:
+                    type: string
+                  class:
+                    type: string
+                  arderss:
+                    type: string
+                required:
+                  - firstName
+                  - lastName
+                  - class
+                  - arderss
+        x-examples:
+          application/json:
+            - firstName: James
+              lastName: Bond
+              class: din17sp
+              arderss: Kotka 1
+      operationId: AddStudent
+      description: Add new student to DB
+      tags:
+        - post
+  /courses:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    name:
+                      type: string
+                    credits:
+                      type: number
+            application/json:
+              examples:
+                response:
+                  value:
+                    - id: 1
+                      name: React
+                      credits: 5
+                    - id: 2
+                      name: Java
+                      credits: 5
+      summary: List all courses
+      operationId: listCourses
+      description: List all courses from DB
+      tags:
+        - get
+    post:
+      responses:
+        '200':
+          description: New course has beed added.
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '406':
+          description: |-
+            New course should include:
+            (id is automatically added)
+            1. name: string,
+            2. credits: number,
+
+            This is request accepts only JSON
+      summary: add new course
+      operationId: addCourse
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  credits:
+                    type: number
+        x-examples:
+          application/json:
+            - name: JavaSript
+              credits: 5
+      description: Add new course to DB
+      tags:
+        - post
+  '/courses/{id}':
+    put:
+      responses:
+        '200':
+          description: course updated
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '406':
+          description: user id not specified
+      summary: update course
+      operationId: updateCourse
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  credits:
+                    type: number
+        x-examples:
+          application/json:
+            - name: KOtlin
+              credits: 5
+      description: update course by provided id
+      tags:
+        - put
+    delete:
+      responses:
+        '200':
+          description: Course deleted
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Please provide course ID.
+      summary: Delete course
+      operationId: deleteCourse
+      description: Remove course by provided id from db
+      tags:
+        - delete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+  /grades:
+    get:
+      responses:
+        '200':
+          description: ''
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    grade:
+                      type: number
+                    course:
+                      type: string
+                    student:
+                      type: string
+            application/json:
+              examples:
+                response:
+                  value:
+                    - id: 1
+                      grade: 3
+                      course: Java
+                      student: Peter
+                    - id: 2
+                      grade: 5
+                      course: JavaScript
+                      student: Kevin
+      summary: get Grades
+      operationId: listGrades
+      description: list all grades from db
+      tags:
+        - get
+    post:
+      responses:
+        '200':
+          description: New grade added
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '406':
+          description: |-
+            New grade should include:
+            (id is automatically generated)
+            1. grade: number,
+            2. course: string,
+            3. student: string,
+
+            This is request accepts only JSON
+      summary: add Grade
+      operationId: addGrade
+      tags:
+        - post
+      description: add grade to DB
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  grade:
+                    type: number
+                  course:
+                    type: string
+                  student:
+                    type: string
+        x-examples:
+          application/json:
+            - grade: 4
+              course: React
+              student: Bob
+  '/grades/{id}':
+    put:
+      responses:
+        '200':
+          description: Grade updated
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '406':
+          description: Please specify the ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  grade:
+                    type: number
+                  course:
+                    type: string
+                  student:
+                    type: string
+        x-examples:
+          application/json:
+            - grade: 5
+              course: Java
+              student: Peter
+      operationId: updateGrade
+      description: update grade by provided ID
+      tags:
+        - put
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+    delete:
+      responses:
+        '200':
+          description: Grade removed
+          content:
+            '*/*':
+              schema:
+                type: object
+                properties: {}
+        '406':
+          description: Please specify the grade to delete by ID
+      summary: delete Grade
+      description: Remove grade from db by provided ID
+      operationId: deleteGrade
+      tags:
+        - delete
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: number
+tags:
+  - name: put
+  - name: delete
+  - name: get
+  - name: post
+servers:
+  - url: 'http://example.com'
+  - url: 'https://example.com'
