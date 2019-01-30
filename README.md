@@ -9,3 +9,6 @@ Create RestAPI for students, courses and grades. Include GET, POST, PUT and DELE
 
 Homework 2
 ReactJS based android application for viewing current weather status by city using OpenWeatherMap API, build with Cordova.
+
+OpenAPI-generator
+homework to create fuctional express api from swagger 3.0 yaml file with OpenAPI-Generator. The result functionality should be identical to "Homework 1" but different data was used to populate response objects.
