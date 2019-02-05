@@ -25,7 +25,7 @@ class CityWeather extends Component {
         // API key 4c8e12d08fc1ab8b3e6906fc5db5131c
          
         if(cityID != this.state.id){
-            fetch('http://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
+            fetch('https://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(
                 res => { return res.json() }).
                 then( data => {
                     this.setState({
