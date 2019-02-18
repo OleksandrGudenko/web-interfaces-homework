@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8"/>
         <link rel="icon" href="./images/icons/icon-72x72.png">
-        <link rel="manifest" type="image/png" href="/manifest.json">
+        <link rel="manifest" href="./manifest.json">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
@@ -16,5 +16,14 @@
     <body>
         <div id="react-target"></div>
         <script type="text/javascript" src="js/bundle.js"></script>
+        <script>
+            // Check that service workers are registered
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
 </html>

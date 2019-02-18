@@ -22,7 +22,7 @@ class CityWeather extends Component {
     componentDidMount(){
         const {cityID} = this.props.location.state;
         
-        // API key 4c8e12d08fc1ab8b3e6906fc5db5131c
+        // API key for your testing 4c8e12d08fc1ab8b3e6906fc5db5131c, limited to 60 request in a minute
          
         if(cityID != this.state.id){
             fetch('https://api.openweathermap.org/data/2.5/weather?id='+ cityID +'&APPID=4c8e12d08fc1ab8b3e6906fc5db5131c').then(

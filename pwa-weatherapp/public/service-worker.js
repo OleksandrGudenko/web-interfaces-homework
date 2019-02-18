@@ -65,3 +65,18 @@ workbox.routing.registerRoute(
       })
 
 );
+
+workbox.routing.registerRoute(
+  new RegExp('^https://api.openweathermap.org/data/2.5/weather'),
+  workbox.strategies.networkFirst({
+      cacheName: 'weatherApi',
+      plugins: [
+          new workbox.expiration.Plugin({                    
+              maxAgeSeconds: 5 * 60, // 5 minutes
+          }),
+          new workbox.cacheableResponse.Plugin({
+              statuses: [0, 200],
+          }),
+      ],
+  })
+);
